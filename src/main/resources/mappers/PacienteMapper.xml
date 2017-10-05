@@ -23,10 +23,10 @@
             e.nombre as eps_nombre,
             e.nit as eps_nit,
 
-            c.idCONSULTAS,
-            c.fecha_y_hora,
-            c.resumen,
-            c.costo
+            c.idCONSULTAS as consulta_id,
+            c.fecha_y_hora as consulta_fechaYhora,
+            c.resumen as consulta_resumen,
+            c.costo as consulta_costo
 
 
             FROM  CM_PACIENTES as p left join CM_CONSULTAS as c on p.id=c.PACIENTES_id left join CM_EPS as e on p.eps_nit=e.nit            
@@ -37,8 +37,8 @@
             <id property='tipoId' column='tipo_id'/>
             <result property='nombre' column='nombre'/>
             <result property='fechaNacimiento' column='fecha_nacimiento'/>
-            <collection property='consultas' ofType='Consulta'></collection>
-            <association property='eps' javaType='Eps' columnPrefix='eps_'></association>                  
+            <association property="eps" javaType="Eps" resultMap='EpsResult' columnPrefix='eps_'></association> 
+            <collection property='consultas' ofType='Consulta' resultMap='ConsultaResult' columnPrefix="consulta_"></collection>            
     </resultMap>                            
     
     <resultMap type='Consulta' id='ConsultaResult'>
