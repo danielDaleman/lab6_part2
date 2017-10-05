@@ -24,6 +24,20 @@
             <result property="fechaNacimiento" column="fecha_nacimi"/>
             <association property="eps" column="Eps" columnPrefix="DetalleEps"/>
             <collection property='consultas' ofType='Consulta' columnPrefix="DetalleConsulta" ></collection>                 
-    </resultMap>                        
+    </resultMap>     
+    
+    <resultMap type='Eps' id='DetalleEps'>
+        <id property='nombre' column='nombre'/>
+        <result property='nit' column='nit'/>        
+    </resultMap>  
+    
+    <resultMap type='Consulta' id='DetalleConsulta'>
+        <id property='id' column='idCONSULTAS'/>
+        <result property='fechayhora' column='fecha_y_hora'/>        
+        <result property='resumen' column='resumen'/>        
+        <result property='costo' column='costo'/>        
+    </resultMap>  
+    
+                                  
                     
 </mapper>
