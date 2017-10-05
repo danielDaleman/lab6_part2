@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.simpleview;
 
 import edu.eci.pdsw.persistence.impl.mappers.PacienteMapper;
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.io.IOException;
@@ -59,15 +60,15 @@ public class MyBATISExample {
         //Imprimir contenido de la lista
         for(Paciente p: pacientes){
             System.out.println(p.getNombre());
-        }
-        
-        Paciente paciente = pmapper.loadPacienteById(1026585443, "CC");
-        System.out.println(paciente.getNombre());
+        }                
         
         Eps eps = new Eps("Sanitas", "8456982");
         Date date = new Date(1993, 02, 27);
-        Paciente p = new Paciente(1068953380, "CC", "Daniel Castiblanco", date, eps);
-        pmapper.insertarPaciente(p);
+        Paciente p = new Paciente(1068953311, "CC", "Daniel Castiblanco", date, eps);
+        //registrarNuevoPaciente(pmapper,p);        
+        Paciente paciente = pmapper.loadPacienteById(1068953311, "CC");
+        actualizarPaciente(pmapper,paciente);
+        sqlss.commit(); 
         
     }
 
@@ -76,8 +77,21 @@ public class MyBATISExample {
      * @param pmap mapper a traves del cual se hará la operacion
      * @param p paciente a ser registrado
      */
-    public void registrarNuevoPaciente(PacienteMapper pmap, Paciente p){
-        
+    public static void registrarNuevoPaciente(PacienteMapper pmap, Paciente p){
+         pmap.insertarPaciente(p);
+         Consulta consul = new Consulta(new Date(2017, 02, 27), "MalestarGeneral", 15000);        
+         pmap.insertConsulta(consul, p.getId(), p.getTipoId(), 35000);
+    }
+    
+    
+    /**
+    * @obj Actualizar los datos básicos del paciente, con sus * respectivas consultas.
+    * @pre El paciente p ya existe
+    * @param pmap mapper a traves del cual se hará la operacion
+    * @param p paciente a ser registrado
+    */
+    public static void actualizarPaciente(PacienteMapper pmap, Paciente p){
+            pmap.actualizarPaciente(p);            
     }
     
 }

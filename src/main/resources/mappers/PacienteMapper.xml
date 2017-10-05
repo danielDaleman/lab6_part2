@@ -6,10 +6,23 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.PacienteMapper">
     
-    <insert id="insertarPaciente">
-            INSERT INTO CM_PACIENTES (id,tipo_id, nombre,fecha_nacimiento,eps)
-                values (pacientep.id, pacientep.tipoId, pacientep.nombre, pacientep.fechaNacimiento, pacientep.eps);
+    
+    <update id="actualizarPaciente">
+            UPDATE CM_PACIENTES
+            SET nombre = "Felipe Moreno"  
+            WHERE id = #{pacientea.id}       
+    </update>
+    
+    <insert id="insertConsulta" useGeneratedKeys="true" keyProperty="con.id">
+            INSERT INTO CM_CONSULTAS (idCONSULTAS, fecha_y_hora, resumen, PACIENTES_id, PACIENTES_tipo_id, costo)
+                VALUES(#{con.id},#{con.fechayHora}, #{con.resumen},#{idp},#{tipoidp},#{costoc})
     </insert>
+    
+    <insert id="insertarPaciente">
+            INSERT INTO CM_PACIENTES (id,tipo_id, nombre,fecha_nacimiento, EPS_nit)
+                VALUES (#{pacientep.id}, #{pacientep.tipoId}, #{pacientep.nombre}, #{pacientep.fechaNacimiento}, #{pacientep.eps.nit})
+    </insert>
+    
     
     <select parameterType="map" id="loadPacienteById" resultMap="PacienteResult">
             select
