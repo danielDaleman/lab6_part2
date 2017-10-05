@@ -5,11 +5,13 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.ConsultaMapper">
     
-    <resultMap type='Consulta' id='DetalleConsulta'>
+    <resultMap type='Consulta' id='ConsultaResult'>
         <id property='id' column='idCONSULTAS'/>
         <result property='fechayhora' column='fecha_y_hora'/>        
         <result property='resumen' column='resumen'/>        
-        <result property='costo' column='costo'/>        
+        <result property='costo' column='costo'/> 
+            <association property='id' javaType='Pacientes'></association> 
+            <association property='tipoId' javaType='Pacientes'></association> 
     </resultMap>
         
 </mapper>
