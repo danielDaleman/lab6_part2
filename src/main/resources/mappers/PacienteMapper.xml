@@ -14,19 +14,16 @@
     
        
     <select parameterType="map" id="loadPacientes" resultMap="PacienteResult">
-            SELECT nombre FROM CM_PACIENTES;
+        SELECT nombre FROM CM_PACIENTES;            
     </select>
     
-    <resultMap type='Paciente' id='DetallePaciente'  >
+    <resultMap type='Paciente' id='PacienteResult'  >
             <id property='id' column='id'/>
             <id property="tipoId" column="tipo_id"/>
             <result property="nombre" column="nombre"/>
             <result property="fechaNacimiento" column="fecha_nacimi"/>
-            <association property="eps" column="EPS_nit"/>
-            <collection property='propiedad4' ofType='DetalleUno'></collection> 
-        
-        
-    </resultMap>
-    
-                
+            <association property="eps" column="Eps" columnPrefix="DetalleEps"/>
+            <collection property='consultas' ofType='Consulta' columnPrefix="DetalleConsulta" ></collection>                 
+    </resultMap>                        
+                    
 </mapper>
