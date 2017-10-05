@@ -12,6 +12,7 @@
     
        
     <select parameterType="map" id="loadPacientes" resultMap="PacienteResult">
+
             select
     
             p.id,
@@ -30,6 +31,7 @@
 
 
             FROM  CM_PACIENTES as p left join CM_CONSULTAS as c on p.id=c.PACIENTES_id left join CM_EPS as e on p.eps_nit=e.nit            
+
     </select>
     
     <resultMap type='Paciente' id='PacienteResult'  >
@@ -39,18 +41,22 @@
             <result property='fechaNacimiento' column='fecha_nacimiento'/>
             <association property="eps" javaType="Eps" resultMap='EpsResult' columnPrefix='eps_'></association> 
             <collection property='consultas' ofType='Consulta' resultMap='ConsultaResult' columnPrefix="consulta_"></collection>            
+
     </resultMap>                            
     
     <resultMap type='Consulta' id='ConsultaResult'>
         <id property='id' column='idCONSULTAS'/>
         <result property='fechayhora' column='fecha_y_hora'/>        
-        <result property='resumen' column='resumen'/>        
+        <result property='resumen' column='resumen'/>      
+
         <result property='costo' column='costo'/>             
+
     </resultMap>
     
     <resultMap type='Eps' id='EpsResult'>
         <id property='nombre' column='nombre'/>
         <result property='nit' column='nit'/>       
-    </resultMap>
-    
+    </resultMap>    
+       
+
 </mapper>
