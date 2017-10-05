@@ -6,8 +6,19 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.PacienteMapper">
     
-    <select parameterType="map" id="loadPacienteByID" resultMap="PacienteResult">
-
+    <insert id="insertarPaciente">
+            INSERT INTO CM_PACIENTES (id,tipo_id, nombre,fecha_nacimiento,eps)
+                values (pacientep.id, pacientep.tipoId, pacientep.nombre, pacientep.fechaNacimiento, pacientep.eps);
+    </insert>
+    
+    <select parameterType="map" id="loadPacienteById" resultMap="PacienteResult">
+            select
+            id,
+            tipo_id,
+            nombre,
+            fecha_nacimiento
+            FROM  CM_PACIENTES
+            WHERE id = #{idp} AND tipo_id = #{tipoidp}
     </select>
     
        
