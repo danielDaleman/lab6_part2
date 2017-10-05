@@ -5,9 +5,6 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.EpsMapper">
     
-    <resultMap type='Eps' id='DetalleEps'>
-        <id property='nombre' column='nombre'/>
-        <result property='nit' column='nit'/>        
-    </resultMap>
+    
         
 </mapper>
