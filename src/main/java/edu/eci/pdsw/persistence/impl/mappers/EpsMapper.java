@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package edu.eci.pdsw.persistence.impl.mappers;
-
 import edu.eci.pdsw.samples.entities.Eps;
 import java.util.List;
-
 /**
  *
  * @author Daniel Moreno && Daniel Castiblanco
  */
-public interface EPSMapper {
+public interface EpsMapper {
     
-    public List<Eps> loadAllEPS();
+    public List<Eps> loadAllEps();
     
 }

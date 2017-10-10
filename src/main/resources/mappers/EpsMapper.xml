@@ -5,6 +5,18 @@
   
 <mapper namespace="edu.eci.pdsw.persistence.impl.mappers.EpsMapper">
     
+    <select parameterType="map" id="loadAllEps" resultMap="EpsResult">
+            select
+        
+            nombre
+            nit
+        
+            FROM CM_EPS
+    </select>  
     
+    <resultMap type='Eps' id='EpsResult'>
+        <id property='nombre' column='nombre'/>
+        <result property='nit' column='nit'/>       
+    </resultMap>  
         
 </mapper>

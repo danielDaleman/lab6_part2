@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.samples.simpleview;
 
+
+import edu.eci.pdsw.persistence.impl.mappers.EpsMapper;
 import edu.eci.pdsw.persistence.impl.mappers.PacienteMapper;
 import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
@@ -54,7 +56,7 @@ public class MyBATISExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         PacienteMapper pmapper=sqlss.getMapper(PacienteMapper.class);
-
+        
         List<Paciente> pacientes=pmapper.loadPacientes();
         
         //Imprimir contenido de la lista
@@ -69,6 +71,13 @@ public class MyBATISExample {
         Paciente paciente = pmapper.loadPacienteById(1068953311, "CC");
         actualizarPaciente(pmapper,paciente);
         sqlss.commit(); 
+        
+        //Punto 5
+        EpsMapper emapper=sqlss.getMapper(EpsMapper.class);
+        List<Eps> listaEps =emapper.loadAllEps();
+        for(Eps e: listaEps){
+            System.out.println(e.getNit());
+        }
         
     }
 
